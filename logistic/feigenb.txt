@@ -1,0 +1,19 @@
+format long
+mu=2.9:0.000001:3.6;
+N=length(mu)
+lambda=zeros(1,N);
+x=0.5;
+N1=1000000
+for j=0:N1
+	x=mu.*x.*(1-x);
+	lamda=abs(mu-2*mu.*x);
+	lambda=lambda+log(lamda);
+end
+lambda=lambda./N1;
+k=2;
+while lambda(k)<0
+	if (lambda(k)>-0.5)
+		fprintf('\n r1=%f,s=%f\n',mu(k),lambda(k))
+    end
+    k=k+1;
+end
